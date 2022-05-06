@@ -3,4 +3,8 @@
 	<string name="username">username</string>
 	<string name="password">password</string>
 	<string name="netflix">netflix</string>
+    <string name="dummy_description">After the devastating events of the Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos’ actions and restore balance to the universe.</string>
+	<string name="my_list">My List</string>
+	<string name="rate">Rate</string>
+	<string name="share">Share</string>
 </resources>
