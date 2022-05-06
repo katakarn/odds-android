@@ -1,10 +1,10 @@
 package com.odds.movie
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 
 class SplashActivity : AppCompatActivity() {
 
@@ -14,7 +14,8 @@ class SplashActivity : AppCompatActivity() {
 
 		Handler(Looper.getMainLooper()).postDelayed({
 			// Open Login Screen
-			Toast.makeText(this, "Hey!", Toast.LENGTH_LONG).show()
+			val intent = Intent(this, LoginActivity::class.java)
+			startActivity(intent)
 		}, 3000)
 	}
 }
