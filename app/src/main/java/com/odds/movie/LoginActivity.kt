@@ -18,27 +18,34 @@ class LoginActivity : AppCompatActivity() {
 		setContentView(binding.root)
 
 		binding.buttonSubmit.setOnClickListener {
-			val username = binding.editTextUsername.text.toString()
-			val password = binding.editTextPassword.text.toString()
+			val user = createUser()
 			binding.progressBar.isVisible = true
-
 			Handler(Looper.getMainLooper()).postDelayed({
 				binding.progressBar.isVisible = false
-				if (username == "admin" && password == "admin") {
-					val user = User(username, password)
-					val intent = Intent(this, MovieActivity::class.java)
-					intent.putExtra(MovieActivity.EXTRA_USER, user)
-					startActivity(intent)
-				} else {
-					Toast.makeText(
-						this,
-						"I think your username and password is admin",
-						Toast.LENGTH_LONG
-					).show()
-				}
+				login(user)
 			}, 3000)
-
 		}
+	}
+
+	private fun login(user: User) {
+		if (user.username == "admin" && user.password == "admin") {
+			val intent = Intent(this, MovieActivity::class.java)
+			intent.putExtra(MovieActivity.EXTRA_USER, user)
+			startActivity(intent)
+		} else {
+			Toast.makeText(
+				this,
+				"I think your username and password is admin",
+				Toast.LENGTH_LONG
+			).show()
+		}
+	}
+
+	private fun createUser(): User {
+		val username = binding.editTextUsername.text.toString()
+		val password = binding.editTextPassword.text.toString()
+		val user = User(username, password)
+		return user
 	}
 
 }
