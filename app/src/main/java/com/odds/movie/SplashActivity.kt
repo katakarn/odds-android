@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.odds.movie.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 
