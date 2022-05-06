@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.odds.movie.MovieActivity
 import com.odds.movie.R
 import com.odds.movie.login.User
 import com.odds.movie.databinding.ActivityHomeMovieBinding
@@ -21,21 +20,24 @@ class HomeMovieActivity : AppCompatActivity() {
 	}
 
 	private fun setupRecyclerView() {
-		val movies = createMovie()
+		val movieAdapter = createAdapter()
+		val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+		with(binding.recyclerView) {
+			setHasFixedSize(true)
+			layoutManager = linearLayoutManager
+			adapter = movieAdapter
+		}
+	}
 
-		val homeMovieAdapter = HomeMovieAdapter(movies) {
+	private fun createAdapter(): HomeMovieAdapter {
+		val movies = createMovie()
+		return HomeMovieAdapter(movies) {
 			val intent = Intent(this, MovieActivity::class.java).apply {
 				val user = intent.getParcelableExtra<User>(MovieActivity.EXTRA_USER)
 				putExtra(MovieActivity.EXTRA_USER, user)
 				putExtra(MovieActivity.EXTRA_MOVIE, it)
 			}
 			startActivity(intent)
-		}
-		val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-		with(binding.recyclerView) {
-			setHasFixedSize(true)
-			layoutManager = linearLayoutManager
-			adapter = homeMovieAdapter
 		}
 	}
 

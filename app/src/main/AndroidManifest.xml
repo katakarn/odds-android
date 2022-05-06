@@ -13,7 +13,7 @@
             android:name=".movie.HomeMovieActivity"
             android:exported="false" />
         <activity
-            android:name=".MovieActivity"
+            android:name=".movie.MovieActivity"
             android:exported="false" />
         <activity
             android:name=".login.LoginActivity"

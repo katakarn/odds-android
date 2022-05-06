@@ -7,7 +7,7 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.odds.movie.MovieActivity
+import com.odds.movie.movie.MovieActivity
 import com.odds.movie.databinding.ActivityLoginBinding
 import com.odds.movie.movie.HomeMovieActivity
 

@@ -12,9 +12,9 @@ class HomeMovieAdapter(
 ) : RecyclerView.Adapter<HomeMovieAdapter.HomeMovieViewHolder>() {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeMovieViewHolder {
-		val view =
-			MovieItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-		return HomeMovieViewHolder(view)
+		val inflater = LayoutInflater.from(parent.context)
+		val binding = MovieItemRowBinding.inflate(inflater, parent, false)
+		return HomeMovieViewHolder(binding)
 	}
 
 	override fun onBindViewHolder(holder: HomeMovieViewHolder, position: Int) {
@@ -34,6 +34,5 @@ class HomeMovieAdapter(
 				root.setOnClickListener { onMoviePressed(movie) }
 			}
 		}
-
 	}
 }

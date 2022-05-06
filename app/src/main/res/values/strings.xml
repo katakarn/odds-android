@@ -12,4 +12,5 @@
 	<string name="play">Play</string>
 	<string name="duration">%d minutes</string>
 	<string name="close_button">Close button</string>
+	<string name="greeting">Hey! %s</string>
 </resources>
