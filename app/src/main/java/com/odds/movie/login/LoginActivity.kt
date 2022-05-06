@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.odds.movie.movie.MovieActivity
 import com.odds.movie.databinding.ActivityLoginBinding
+import com.odds.movie.delay
 import com.odds.movie.movie.HomeMovieActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -21,13 +22,15 @@ class LoginActivity : AppCompatActivity() {
 
 		binding.buttonSubmit.setOnClickListener {
 			val user = createUser()
-			binding.progressBar.isVisible = true
-			Handler(Looper.getMainLooper()).postDelayed({
-				binding.progressBar.isVisible = false
-				login(user)
-			}, 3000)
+			delay(
+				beforeDelay = { binding.progressBar.isVisible = true },
+				afterDelay = {
+					binding.progressBar.isVisible = false
+					login(user)
+				})
 		}
 	}
+
 
 	private fun login(user: User) {
 		if (user.username == "admin" && user.password == "admin") {
