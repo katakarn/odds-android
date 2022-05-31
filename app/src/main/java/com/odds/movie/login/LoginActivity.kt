@@ -22,17 +22,9 @@ class LoginActivity : AppCompatActivity(), LoginPresenter.LoginView {
         presenter.attachView(this)
 
         binding.buttonSubmit.setOnClickListener {
-            createUser()
-            delay(
-                beforeDelay = { binding.progressBar.isVisible = true },
-                afterDelay = {
-                    binding.progressBar.isVisible = false
-//                    login(user)
-
-                    val username = binding.editTextUsername.text.toString()
-                    val password = binding.editTextPassword.text.toString()
-                    presenter.login(username, password)
-                })
+            val username = binding.editTextUsername.text.toString()
+            val password = binding.editTextPassword.text.toString()
+            presenter.login(username, password)
         }
     }
 
@@ -54,6 +46,14 @@ class LoginActivity : AppCompatActivity(), LoginPresenter.LoginView {
             "I think your username and password is admin",
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    override fun showProgressBar() {
+        binding.progressBar.isVisible = true
+    }
+
+    override fun hideProgressBar() {
+        binding.progressBar.isVisible = false
     }
 
 }
