@@ -34,8 +34,8 @@ class LoginPresenter constructor(
             } else {
                 // Show Toast
                 view.showToastMessage()
-                view.hideProgressBar()
             }
+            view.hideProgressBar()
         }
     }
 }
