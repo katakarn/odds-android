@@ -1,14 +1,15 @@
 package com.odds.movie.login
 
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import java.time.Duration
 
-class LoginPresenter {
+class LoginPresenter constructor(
+    private val dispatcher: CoroutineDispatcher,
+    private val duration: Long){
 
     //loose coupling, hight cohesion ข้อต่อหลวม, ความสามัคคีสูง
     private lateinit var view: LoginView
-    private val scope = MainScope()
+    private val scope = CoroutineScope(Job() + dispatcher)
 
     fun attachView(view:LoginView){
         this.view = view
@@ -24,7 +25,7 @@ class LoginPresenter {
     fun login(username: String, password: String) {
         scope.launch {
             view.showProgressBar()
-            delay(2000)
+            delay(duration)
 
             if (username == "admin" && password == "admin") {
                 //navigate to Movie Activity
