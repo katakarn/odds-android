@@ -25,11 +25,17 @@ class HomeMovieFragment : Fragment(), HomeMoviePresenter.HomeMovieView{
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         presenter.attachView(this)
         presenter.fetchMovie()
-        }
+    }
+
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        presenter.attachView(this)
+//        presenter.fetchMovie()
+//        }
 
 //    private fun createMovie() = listOf(
 //        Movie(1, "Avenger Endgame", R.drawable.endgame, 1),

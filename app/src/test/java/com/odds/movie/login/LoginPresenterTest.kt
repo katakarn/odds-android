@@ -1,5 +1,6 @@
 package com.odds.movie.login
 
+import com.odds.movie.data.LocalStorange
 import kotlinx.coroutines.Dispatchers
 import org.junit.Assert.*
 import org.junit.Test
@@ -10,7 +11,7 @@ class LoginPresenterTest {
 
         // AAA = Arrange, Act, Assert
         // Arrange = Given a context, prepare environment or object
-        val presenter = LoginPresenter(Dispatchers.Unconfined, 0)
+        val presenter = LoginPresenter(Dispatchers.Unconfined, 0, StubLocalStorage())
         val view = SpyLoginView()
         presenter.attachView(view)
 
@@ -32,7 +33,7 @@ class LoginPresenterTest {
     @Test
     fun `when input username and password incorrect should call showToastMessage`() {
         //Arrange
-        val presenter = LoginPresenter(Dispatchers.Unconfined, 0)
+        val presenter = LoginPresenter(Dispatchers.Unconfined, 0, StubLocalStorage())
         val view = SpyLoginView()
         presenter.attachView(view)
 
@@ -45,12 +46,38 @@ class LoginPresenterTest {
 
     }
 
+    @Test
+    fun `when call localStorage read should return admin`() {
+        //Arrange
+        val view = SpyLoginView()
+        val presenter = LoginPresenter(Dispatchers.Unconfined, 0, StubLocalStorage())
+        presenter.attachView(view)
+
+        //Act
+        presenter.askUsername()
+
+        //Assert
+        val expect = "admin"
+        assertEquals(expect, view.spyUsername)
+    }
+
+    class StubLocalStorage : LocalStorange {
+        override fun insert(data: String) {
+
+        }
+
+        override fun read(): String {
+            return "admin"
+        }
+    }
+
     class SpyLoginView : LoginPresenter.LoginView {
 
+        var spyUsername: String = ""
         var spyGoToMovieScreen = 0
         var spyShowToastMessage = 0
 
-        override fun goToMovieScreeen(user: User) {
+        override fun goToMovieScreen(user: User) {
             spyGoToMovieScreen += 1
         }
 
@@ -64,6 +91,10 @@ class LoginPresenterTest {
 
         override fun hideProgressBar() {
 
+        }
+
+        override fun onUsernameSaved(username: String) {
+            spyUsername = username
         }
 
     }

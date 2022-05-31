@@ -32,6 +32,7 @@ class MovieDetailFragment : Fragment() {
             tvMovieName.text = movie?.name.orEmpty()
             tvDuration.text = getString(com.odds.movie.R.string.duration).format(movie?.duration)
             tvGreeting.text = getString(com.odds.movie.R.string.greeting).format(user?.username.orEmpty())
+            tvDescription.text = movie?.descripton
             Glide.with(binding.imageView)
                 .load(movie?.image)
                 .into(binding.imageView)
