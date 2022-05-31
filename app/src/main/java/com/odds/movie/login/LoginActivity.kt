@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.odds.movie.HomeMovieActivity
 import com.odds.movie.movie.MovieActivity
 import com.odds.movie.databinding.ActivityLoginBinding
 import com.odds.movie.delay
