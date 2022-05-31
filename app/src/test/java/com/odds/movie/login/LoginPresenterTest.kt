@@ -32,12 +32,12 @@ class LoginPresenterTest {
     @Test
     fun `when input username and password incorrect should call showToastMessage`() {
         //Arrange
-        val presenter= LoginPresenter(Dispatchers.Unconfined, 0)
-        val  view = SpyLoginView()
+        val presenter = LoginPresenter(Dispatchers.Unconfined, 0)
+        val view = SpyLoginView()
         presenter.attachView(view)
 
         //Act
-        presenter.login("user ผิด","password ผิด")
+        presenter.login("user ผิด", "password ผิด")
 
         //Assert = Verify the result
         val expect = 1

@@ -1,13 +1,11 @@
 package com.odds.movie.movie
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.odds.movie.R
-import com.odds.movie.databinding.ActivityMovieBinding
-import com.odds.movie.databinding.FragmentHomeMovieBinding
+import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.odds.movie.databinding.FragmentMovieDetailBinding
 import com.odds.movie.login.User
 
@@ -34,7 +32,10 @@ class MovieDetailFragment : Fragment() {
             tvMovieName.text = movie?.name.orEmpty()
             tvDuration.text = getString(com.odds.movie.R.string.duration).format(movie?.duration)
             tvGreeting.text = getString(com.odds.movie.R.string.greeting).format(user?.username.orEmpty())
-            imageView.setImageResource(movie?.image?: com.odds.movie.R.drawable.endgame)
+            Glide.with(binding.imageView)
+                .load(movie?.image)
+                .into(binding.imageView)
+//            imageView.setImageResource(movie?.image?: com.odds.movie.R.drawable.endgame)
         }
     }
 
@@ -43,8 +44,8 @@ class MovieDetailFragment : Fragment() {
         fun newInstance(user: User?, movie: Movie?): MovieDetailFragment {
             val fragment = MovieDetailFragment()
             val bundle = Bundle()
-            bundle.putParcelable(MovieActivity.EXTRA_MOVIE,movie)
-            bundle.putParcelable(MovieActivity.EXTRA_USER,user)
+            bundle.putParcelable(MovieActivity.EXTRA_MOVIE, movie)
+            bundle.putParcelable(MovieActivity.EXTRA_USER, user)
             fragment.arguments = bundle
             return fragment
         }

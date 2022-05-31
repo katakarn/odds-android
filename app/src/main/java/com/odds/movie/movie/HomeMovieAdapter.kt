@@ -3,7 +3,7 @@ package com.odds.movie.movie
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.odds.movie.R
+import com.bumptech.glide.Glide
 import com.odds.movie.databinding.MovieItemRowBinding
 
 class HomeMovieAdapter(val movies: List<Movie>,val onClickMovie: (Movie)-> Unit)
@@ -14,7 +14,10 @@ class HomeMovieAdapter(val movies: List<Movie>,val onClickMovie: (Movie)-> Unit)
         private val binding: MovieItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
             fun bind(movie: Movie, onClickMovie: (Movie) -> Unit) {
-                binding.imageMovie.setImageResource(movie.image?: R.drawable.endgame)
+                Glide.with(binding.imageMovie)
+                    .load(movie.image)
+                    .into(binding.imageMovie)
+//                binding.imageMovie.setImageResource(movie.image?: R.drawable.endgame)
                 binding.tvMovieName.text = movie.name
                 binding.root.setOnClickListener{onClickMovie(movie)}
             }
